@@ -1,0 +1,173 @@
+{        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/Alina0029/hw10/main/bar_chart.csv"
+        },
+"hconcat": [
+    {
+    "width": 600,
+    "height": 400,
+    "title":{
+      "text":"Vaccinated people by continent",
+      "fontSize":15,
+      "fontWeight":"bolder"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/Alina0029/hw10/main/pie_data.csv"
+    },
+    "transform": [
+        {
+            "window": [{
+                "op": "sum",
+                "field": "people_vaccinated",
+                "as": "Totalvacc"
+            }],
+            "frame": [null, null]
+        },
+        {
+            "calculate": "datum.people_vaccinated/datum.Totalvacc * 100",
+            "as": "presentage"
+        }
+    ],
+          "encoding": {
+
+        "theta": {
+            "field": "presentage",
+            "type": "quantitative",
+            "aggregate": "sum",
+            "stack": true
+        },
+        "color": {
+            "scale": {
+                "domain": [
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Africa",
+                    "Asia",
+                    "Oceania"
+                                ],
+                "range": [
+                    "#e41a1c",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#a6cee3",
+                    "#377eb8",
+                    "#a65628"
+                ]
+            },
+            "field": "continent",
+            "type": "nominal"
+        },
+        "opacity": {
+                "condition": {"param": "continent_highl", "value": 1},
+                "value": 0.2
+              }
+    },
+    "layer": [{
+            "mark": {
+                "type": "arc",
+                "outerRadius": 200,
+                "innerRadius": 125
+            },
+             "params": [
+        {
+          "name": "continent_highl",
+          "select": { "type": "point", "fields": ["continent"] },
+          "bind": "legend"
+        }]
+        },
+        
+        {
+            "mark": {
+                "type": "text",
+                "radius": 160,
+                "fontSize": 15,
+                "fill": "white"
+            },
+            "encoding": {
+                "text": { "field": "presentage", "format": ".2f" }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "fontSize": 20,
+                "text": "Vaccinated People",
+                "baseline": "alphabetic",
+                "y": 180,
+                "fill": "black"
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "fontSize": 20,
+                "baseline": "alphabetic",
+                "y": 210,
+                "fill": "black"
+            },
+            "encoding": {
+                "text": { "field": "Totalvacc", "type": "quantitative" }
+
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "fontSize": 20,
+                "fontWeight": "lighter",
+                "baseline": "alphabetic",
+                "y": 240,
+                "text": "56%",
+                "fill": "black"
+            }
+        }
+    ]
+},
+    {     "data": {
+          "url": "https://raw.githubusercontent.com/Alina0029/hw10/main/bar_chart.csv"
+        },
+      "title": { "text": "Top 20 vaccination rate country" },
+      "mark": "bar", 
+        "transform": [
+          { "filter": { "param": "continent_highl" } },
+          {"filter": "datum.continent != '' "},
+          {"window": [{"op": "rank","as": "rand"}],
+            "sort": [{ "field": "people_vaccinated_per_hundred", "order": "descending" }]
+          }, {
+              "filter": "datum.rand <= 20"
+          },
+          {"filter": "datum.people_vaccinated_per_hundred >0 "}
+    
+      ],
+      "encoding": {
+          "x": { "field": "people_vaccinated_per_hundred", "type": "quantitative",
+                  "axis": { "title": "Vaccinated People per 100", "grid": false } },
+          "y": { "field": "location", "type": "nominal","sort": { "field": "people_vaccinated_per_hundred", "order": "descending" },
+                  "axis": { "title": ""} },
+                  "color": {
+                    "field": "continent",
+                    "type": "nominal",
+                    "scale": {
+                      "domain": [
+                        "North America",
+                        "South America",
+                        "Europe",
+                        "Africa",
+                        "Asia",
+                        "Oceania"
+                      ],
+                      "range": [
+                        "#e41a1c",
+                        "#984ea3",
+                        "#ff7f00",
+                        "#a6cee3",
+                        "#377eb8",
+                        "#a65628"
+                      ]
+                    }
+                  }
+      }
+    }
+    ]
+    }
