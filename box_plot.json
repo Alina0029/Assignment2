@@ -1,0 +1,42 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical box plot showing median and lower and upper quartiles of the distribution of body mass of penguins.",
+    "data": {"url": "https://raw.githubusercontent.com/Alina0029/Assignment2/main/map_data.csv"},
+    "width": 600,
+"height": 300,
+    "transform": [{"filter": "datum.continent != '' "},
+        {"filter": "datum.total_cases_per_million >0 "},
+        {"calculate": "datum.total_cases_per_million/100", "as": "a1"}
+    ],
+    "mark": "boxplot",
+    "encoding": {
+      "x": {"field": "continent", "type": "nominal"},
+      "color": { "field": "continent" ,
+        "type": "nominal",
+        "legend": null,
+        "scale": {
+            "domain": [
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+              ],
+              "range": [
+                "#fb8072",
+                "#fdb462",
+                "#bebada",
+                "#b3b3b3",
+                "#80b1d3",
+                "#9e765f"
+              ]
+}
+},
+      "y": {
+        "field": "a1",
+        "type": "quantitative",
+        "scale": {"zero": false}
+      }
+    }
+  }
