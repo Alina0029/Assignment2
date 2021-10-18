@@ -9,7 +9,7 @@
         {"filter": "datum.total_cases_per_million >0 "},
         {"calculate": "datum.total_cases_per_million/100", "as": "cases per 10,000"}
     ],
-    "mark": {"type":"boxplot"},
+    "mark": {"type":"boxplot","size":50},
     "encoding": {
       "x": {"field": "continent", "type": "nominal","title":""},
       "color": { "field": "continent" ,
