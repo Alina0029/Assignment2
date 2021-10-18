@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>COVID-19</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+  <!-- custom style -->
+  <style>
+    * {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-family: 'Oxygen', sans-serif;
+    }
+
+    h1 {
+      font-weight: 900;
+      background: #b6ebf3;
+      text-align: centre;
+      padding-top:40px;
+      padding-bottom:40px;
+      font-size:55px
+    }
+
+    body {
+      background-color: azure;
+    }
+
+    .page {
+      width: 900px;
+      background-color: azure;
+      margin: auto;
+      padding: 70px;
+      padding-top: 35px;
+    }
+
+    .vis-container {
+      width: 100%;
+    }
+
+    .description h2,
+    h1 {
+      margin-top: 10px;
+    }
+
+    .description-right {
+      padding-left: 5px;
+    }
+
+    .description-left {
+      padding-right: 5px;
+    }
+
+    .pure-g {
+      margin-bottom: 5px;
+    }
+  
+    .pure-g1{
+      margin-bottom: 5px;
+      padding-left: 5px;
+    }
+    
+    .small-font {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- Title and subtitle -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"> COVID-19 Global Epidemic</h1>
+        <p style = "text-align:center"> Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus. </p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Caption/small text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> COVID-19 outbreak Map </h2>
+        <p style = "text-align:center"> This map shows the confirmed cases per million in the different country.The <span style="color: #e49023;font-weight: bold;font-size:18px;">United States of America </span>is the most affected country. Although <span style="color: #e49023;font-weight: bold;font-size:18px;">China</span> is the first country that discovered the COVID-19, the number of total cases per million is the lowest.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- Choropleth map -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> Confirmed cases and Deaths per 300 population</h2>
+        <p style = "text-align:center"> In the world, for every 300 people, approximately <span style="color: #e49023;font-weight: bold;font-size:18px;">9 people</span> will be diagnosed with COVID-19, and <span style="color: #e49023;font-weight: bold;font-size:18px;">2 people</span> will die due to being infected by the COVID-19.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis6" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- More text -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <h2 style = "text-align:center"> Boxplot of total cases per 10,000  </h2>
+            <p style = "text-align:center">This box plot shows the <span style="color: #e49023;font-weight: bold;font-size:18px;">outliers and distribution </span>of confirmed cases per 10,000 in different continents. <span style="color: #e49023;font-weight: bold;font-size:18px;">Africa</span> has the most outliers, indicating that the confirmed cases per 10,000 among African countries are very different.</p>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> Deaths of COVID-19  </h2>
+        <p style = "text-align:center"> The mutated COVID-19 virus was discovered in the UK in <span style="color: #e49023;font-weight: bold;font-size:18px;">September 2020</span>, which resulted in the death cases of Europe <span style="color: #e49023;font-weight: bold;font-size:18px;">increased significantly</span> from September 2020 to January 2021. </p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- Plot2 -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> COVID-19 Vaccination Situation  </h2>
+        <p style = "text-align:center"> At present, <span style="color: #e49023;font-weight: bold;font-size:18px;">47%</span> of people in the world have been vaccinated. <span style="color: #e49023;font-weight: bold;font-size:18px;">Asia</span> has the largest number of vaccinated people in the world, while <span style="color: #e49023;font-weight: bold;font-size:18px;">South America </span>has the highest vaccination rate out of all continent. From the country's perspective, the <span style="color: #e49023;font-weight: bold;font-size:18px;">United Arab Emirates</span> is the highest vaccination rate country. </p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+   <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis3" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style = "text-align:center"></h1>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+
+    <!-- More text -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 style = "text-align:center"> Correlation between death cases and confirmed cases </h2>
+        <p style = "text-align:center"> This bubble plot shows a <span style="color: #e49023;font-weight: bold;font-size:18px;">positive correlation</span> between the number of deaths and the number of confirmed cases. However, the population density <span style="color: #e49023;font-weight: bold;font-size:18px;">does not show a positive correlation </span>with the number of confirmed cases as expected. Many countries have <span style="color: #e49023;font-weight: bold;font-size:18px;">low</span> population density but have <span style="color: #e49023;font-weight: bold;font-size:18px;">high</span> total cases per million.</p>
+      </div>
+   </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-u-1-1">
+      <div id="vis5" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+
+
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/Alina0029/Assignment2">Siqi Zhong</a>. The dataset can be found from <a
+            href="https://github.com/owid/covid-19-data/tree/master/public/data">here</href>.</p>
+      </div>
+    </div>
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "./covid-19map.json";
+    var specVis2 = "./final_death.vg.json";
+    var specVis3 = "./final_vaccine.vg.json";
+    var specVis4 = "./box_plot.json";
+    var specVis5 = "./final_bubble.json";
+    var specVis6 = "./isot.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+    vegaEmbed('#vis6', specVis6, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "azure",
+    "description": "A vertical box plot showing the median, lower and upper quartile of the distribution of confirmed cases per million.",
+    "data": {"url": "https://raw.githubusercontent.com/Alina0029/hw10/main/map_data.csv"},
+    "width": 840,
+    "height": 300,
+    "transform": [{"filter": "datum.continent != '' "},
+        {"filter": "datum.total_cases_per_million >0 "},
+        {"calculate": "datum.total_cases_per_million/100", "as": "cases per 10,000"}
+    ],
+    "mark": {"type":"boxplot"},
+    "encoding": {
+      "x": {"field": "continent", "type": "nominal","title":""},
+      "color": { "field": "continent" ,
+        "type": "nominal",
+        "scale": {
+            "domain": [
+                "North America",
+                "South America",
+                "Europe",
+                "Africa",
+                "Asia",
+                "Oceania"
+              ],
+              "range": [
+                "#fb8072",
+                "#fdb462",
+                "#bebada",
+                "#b3b3b3",
+                "#80b1d3",
+                "#9e765f"
+              ]
+          },
+          "legend": null
+},
+      "y": {
+        "field": "cases per 10,000",
+        "type": "quantitative",
+        "title": "Number of cases"
+      },
+      "tooltip": {
+        "field": "cases per 10,000",
+        "format": ".0f",
+        "type": "quantitative"
+      }
+    },
+    "config": {
+        "view": {"stroke": null},
+        "axis": {"grid": false}}
+  }
