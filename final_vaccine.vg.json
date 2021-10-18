@@ -184,7 +184,7 @@
  "layer":[{ "mark": "bar", 
   "encoding": {
       "x": { "field": "people_vaccinated_per_hundred", "type": "quantitative",
-              "axis": { "title": "vaccination rate(%)", "grid": false } ,"scale": {"type": "linear", "domain": [0,100]}},
+              "axis": { "title": "Vaccination rate(%)", "grid": false } ,"scale": {"type": "linear", "domain": [0,100]}},
       "y": { "field": "continent", "type": "nominal","sort": { "field": "people_vaccinated_per_hundred", "order": "descending" },
               "axis": { "title": ""} },
               "color": {
