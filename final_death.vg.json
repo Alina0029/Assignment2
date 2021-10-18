@@ -13,7 +13,7 @@
         "field": "date",
         "timeUnit": "day",
         "type": "ordinal",
-        "title": "Day of the week"
+        "title": "Week"
     },
     "color": {"aggregate":"sum",
         "field": "new_deaths",
